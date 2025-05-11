@@ -49,7 +49,7 @@ String::String(int capacity) {
 
 String::String(size_t size, const char* initialValue) {
     if (!initialValue) {
-        return;
+        throw std::invalid_argument("Incorrect initial value.");
     }
 
     this->size = std::strlen(initialValue);
