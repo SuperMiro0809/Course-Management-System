@@ -62,6 +62,8 @@ class String {
 
       friend std::istream& operator>>(std::istream& is, String& str);
 
+      friend std::istream& getline(std::istream& in, String& str);
+
       String& operator+=(const String& str);
 
       String& operator+=(const char* str);
@@ -95,4 +97,3 @@ String operator+(const String& lhs, char rhs);
 String operator+(char lhs, const String& rhs);
 
 std::ostream& operator<<(std::ostream& os, const String& str);
-std::istream& operator>>(std::istream& is, String& str);

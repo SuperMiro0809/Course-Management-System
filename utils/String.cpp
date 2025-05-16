@@ -312,3 +312,17 @@ std::istream& operator>>(std::istream& is, String& str) {
 
     return is;
 }
+
+std::istream& getline(std::istream& is, String& str) {
+    char buffer[1024];
+    is.getline(buffer, 1024);
+
+    size_t inputLen = std::strlen(buffer);
+    int newCap = roundToPowerOfTwo(inputLen);
+    str.resize(newCap);
+
+    std::strcpy(str.elements, buffer);
+    str.size = inputLen;
+
+    return is;
+}
