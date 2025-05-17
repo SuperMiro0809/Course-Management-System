@@ -271,7 +271,15 @@ String operator+(char lhs, const String& rhs) {
 }
 
 bool operator==(const String& lhs, const String& rhs) {
-    return std::strcmp(lhs.elements, rhs.elements) == 0;
+    return std::strcmp(lhs.getElements(), rhs.getElements()) == 0;
+}
+
+bool operator==(const String& lhs, const char* str) {
+    return std::strcmp(lhs.getElements(), str) == 0;
+}
+
+bool operator==(const char* str, const String& rhs) {
+    return std::strcmp(str, rhs.getElements());
 }
 
 bool operator!=(const String& lhs, const String& rhs) {
@@ -279,11 +287,11 @@ bool operator!=(const String& lhs, const String& rhs) {
 }
 
 bool operator<(const String& lhs, const String& rhs) {
-    return std::strcmp(lhs.elements, rhs.elements) < 0;
+    return std::strcmp(lhs.getElements(), rhs.getElements()) < 0;
 }
 
 bool operator>(const String& lhs, const String& rhs) {
-    return std::strcmp(lhs.elements, rhs.elements) > 0;
+    return std::strcmp(lhs.getElements(), rhs.getElements()) > 0;
 }
 
 bool operator<=(const String& lhs, const String& rhs) {

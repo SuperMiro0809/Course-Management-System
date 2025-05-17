@@ -69,21 +69,12 @@ class String {
       String& operator+=(const char* str);
 
       String& operator+=(char c);
-
-      friend bool operator==(const String& lhs, const String& rhs);
-
-      friend bool operator!=(const String& lhs, const String& rhs);
-
-      friend bool operator<(const String& lhs, const String& rhs);
-
-      friend bool operator>(const String& lhs, const String& rhs);
-
-      friend bool operator<=(const String& lhs, const String& rhs);
-
-      friend bool operator>=(const String& lhs, const String& rhs);
 };
 
 bool operator==(const String& lhs, const String& rhs);
+bool operator==(const String& lhs, const char* str);
+bool operator==(const char* str, const String& rhs);
+
 bool operator!=(const String& lhs, const String& rhs);
 bool operator<(const String& lhs, const String& rhs);
 bool operator>(const String& lhs, const String& rhs);
