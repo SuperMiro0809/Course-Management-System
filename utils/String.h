@@ -64,6 +64,8 @@ class String {
 
       friend std::istream& getline(std::istream& in, String& str);
 
+      friend std::istream& getline(std::istream& is, String& str, char delimeter);
+
       String& operator+=(const String& str);
 
       String& operator+=(const char* str);

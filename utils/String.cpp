@@ -74,6 +74,7 @@ String::String(size_t size, char c) {
 }
 
 String::~String() {
+    // std::cout << "~String()" << " " << elements << std::endl;
     freeDynamic();
 }
 
@@ -324,6 +325,20 @@ std::istream& operator>>(std::istream& is, String& str) {
 std::istream& getline(std::istream& is, String& str) {
     char buffer[1024];
     is.getline(buffer, 1024);
+
+    size_t inputLen = std::strlen(buffer);
+    int newCap = roundToPowerOfTwo(inputLen);
+    str.resize(newCap);
+
+    std::strcpy(str.elements, buffer);
+    str.size = inputLen;
+
+    return is;
+}
+
+std::istream& getline(std::istream& is, String& str, char delimeter) {
+    char buffer[1024];
+    is.getline(buffer, 1024, delimeter);
 
     size_t inputLen = std::strlen(buffer);
     int newCap = roundToPowerOfTwo(inputLen);
