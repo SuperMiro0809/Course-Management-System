@@ -11,5 +11,6 @@ void System::setCurrentUser(User* user) {
 }
 
 void System::logout() {
+    delete currentUser;
     currentUser = nullptr;
 }
