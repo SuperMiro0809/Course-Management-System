@@ -1,1 +1,3 @@
 #include "Teacher.h"
+
+Teacher::Teacher(const char* firstName, const char* familyName, unsigned int id): User(firstName, familyName, id) {}

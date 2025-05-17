@@ -4,6 +4,6 @@
 
 class Command {
     public:
-        virtual void execute(const System& system) = 0;
-        virtual ~Command();
+        virtual void execute(System& system) = 0;
+        virtual ~Command() = default;
 };
