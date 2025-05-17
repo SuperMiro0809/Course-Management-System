@@ -54,4 +54,6 @@ void LoginCommand::execute(System& system) {
             return;
         }
     }
+
+    std::cout << "Wrong credentials! Please try again" << std::endl;
 }
