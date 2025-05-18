@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
+#include "../models/User.h"
 #include "../models/Admin.h"
 #include "../models/Teacher.h"
 #include "../models/Student.h"
