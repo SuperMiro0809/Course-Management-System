@@ -1,6 +1,8 @@
 #include "System.h"
 
-System::System() = default;
+System::System() {
+    currentUser = nullptr;
+}
 
 const User* System::getCurrentUser() const {
     return currentUser;

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 #include "services/System.h"
 #include "utils/String.h"
@@ -21,7 +22,14 @@ int main() {
         if (input == "exit") break;
 
         if (Command* cmd = commandFactory.create(input)) {
-            cmd->execute(system);
+            try {
+                cmd->execute(system);
+            } catch (const std::logic_error& e) {
+                std::cout << e.what() << std::endl;
+            } catch (const std::runtime_error& e) {
+                std::cout << e.what() << std::endl;
+            }
+
             delete cmd;
         } else {
             std::cout << "Invalid command! Please try again" << std::endl;

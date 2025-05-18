@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 #include "../models/Admin.h"
 #include "../models/Teacher.h"
 #include "../models/Student.h"
@@ -12,11 +13,16 @@ LoginCommand::LoginCommand(unsigned int id, const String& password): Command() {
 }
 
 void LoginCommand::execute(System& system) {
+    const User* currUser = system.getCurrentUser();
+
+    if (currUser) {
+        throw std::logic_error("Command forbidden!");
+    }
+
     std::ifstream UsersFile("../users.txt");
 
     if (!UsersFile.is_open()) {
-        std::cout << "Error: could not open users.txt" << std::endl;
-        return;
+        throw std::runtime_error("Error: could not open users.txt");
     }
 
     String line;
