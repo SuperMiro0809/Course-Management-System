@@ -6,6 +6,7 @@
 #include "LogoutCommand.h"
 #include "AddTeacherCommand.h"
 #include "AddStudentCommand.h"
+#include "ChangePasswordCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -32,6 +33,11 @@ Command* CommandFactory::create(const String& input) {
         ss >> firstName >> familyName >> password;
 
         return new AddStudentCommand(firstName, familyName, password);
+    } else if (cmd == "change_password") {
+        String oldPassword, newPassword;
+        ss >> oldPassword >> newPassword;
+
+        return new ChangePasswordCommand(oldPassword, newPassword);
     }
 
     return nullptr;

@@ -8,4 +8,6 @@ class UsersDatabase: public Database {
         UsersDatabase(const char* dbName);
 
         void addNewUser(const String& firstName, const String& familyName, const char* role, const String& password);
+
+        void changePassword(unsigned int id, const String& oldPassword, const String& newPassword);
 };
