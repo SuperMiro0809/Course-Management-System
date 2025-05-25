@@ -3,7 +3,8 @@
 #include "../utils/String.h"
 
 class Database {
-    String dbName;
+    protected:
+        String dbName;
     public:
         Database(const char* dbName);
 

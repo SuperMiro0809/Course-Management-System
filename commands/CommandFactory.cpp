@@ -4,6 +4,7 @@
 #include "../utils/String.h"
 #include "LoginCommand.h"
 #include "LogoutCommand.h"
+#include "AddTeacherCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -20,6 +21,11 @@ Command* CommandFactory::create(const String& input) {
         return new LoginCommand(id, password);
     } else if (cmd == "logout") {
         return new LogoutCommand();
+    } else if (cmd == "add_teacher") {
+        String firstName, familyName, password;
+        ss >> firstName >> familyName >> password;
+
+        return new AddTeacherCommand(firstName, familyName, password);
     }
 
     return nullptr;
