@@ -15,5 +15,5 @@ void AddCourseCommand::execute(System& system) {
 
     CoursesDatabase coursesDb("../courses.txt");
 
-    coursesDb.addNewCourse(courseName, coursePassword);
+    coursesDb.addNewCourse(courseName, coursePassword, currUser->getId());
 }
