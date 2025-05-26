@@ -36,6 +36,12 @@ void AddToCourseCommand::execute(System& system) {
     }
 
     CourseStudentsDatabase courseStudentsDb("../course_students.txt");
+
+    if (courseStudentsDb.isStudentAddedToCourse(courseId, studentId)) {
+        delete user;
+        throw std::logic_error("Student with this ID is already in this course.");
+    }
+
     courseStudentsDb.addNewCourseStudent(courseId, studentId);
     delete user;
 }
