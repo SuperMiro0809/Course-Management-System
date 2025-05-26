@@ -8,6 +8,7 @@
 #include "AddStudentCommand.h"
 #include "ChangePasswordCommand.h"
 #include "CreateCourseCommand.h"
+#include "AddToCourseCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -44,6 +45,12 @@ Command* CommandFactory::create(const String& input) {
         ss >> courseName >> coursePassword;
 
         return new CreateCourseCommand(courseName, coursePassword);
+    } else if (cmd == "add_to_course") {
+        String courseName;
+        unsigned int studentId;
+        ss >> courseName >> studentId;
+
+        return new AddToCourseCommand(courseName, studentId);
     }
 
     return nullptr;
