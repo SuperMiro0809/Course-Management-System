@@ -7,5 +7,5 @@ class Teacher: public User {
 public:
     Teacher(const char* firstName, const char* familyName, unsigned int id);
 
-    const String& getRole() const override;
+    String getRole() const override;
 };
