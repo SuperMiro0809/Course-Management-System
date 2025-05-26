@@ -4,10 +4,13 @@
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
+#include "../models/Admin.h"
+#include "../models/Teacher.h"
+#include "../models/Student.h"
 
 UsersDatabase::UsersDatabase(const char* dbName): Database(dbName) {}
 
-void UsersDatabase::addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) {
+void UsersDatabase::addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) const {
     int nextId = autoIncrement();
 
     std::ofstream DBFile(dbName.getElements(), std::ios::app);
@@ -27,9 +30,11 @@ void UsersDatabase::addNewUser(const String& firstName, const String& familyName
               << familyName.getElements()
               << " with ID " << nextId << "!"
               << std::endl;
+
+    DBFile.close();
 }
 
-void UsersDatabase::changePassword(unsigned int id, const String& oldPassword, const String& newPassword) {
+void UsersDatabase::changePassword(unsigned int id, const String& oldPassword, const String& newPassword) const {
     std::ifstream DBFile(dbName.getElements());
     if (!DBFile.is_open()) {
         throw std::runtime_error("Error: could not open database file");
@@ -83,4 +88,42 @@ void UsersDatabase::changePassword(unsigned int id, const String& oldPassword, c
     std::rename("../users_temp.txt", dbName.getElements());
 
     std::cout << "Password changed successfully!" << std::endl;
+}
+
+const User* UsersDatabase::getUserById(unsigned int id) const {
+    std::ifstream DBFile(dbName.getElements());
+    if (!DBFile.is_open()) {
+        throw std::runtime_error("Error: could not open database file");
+    }
+
+    String line;
+    while (true) {
+        if (DBFile.eof()) {
+            break;
+        }
+
+        getline(DBFile, line);
+        std::stringstream ss(line.getElements());
+        String idStr, firstNameStr, lastNameStr, roleStr, passStr;
+
+        getline(ss, idStr, '|');
+        getline(ss, firstNameStr, '|');
+        getline(ss, lastNameStr, '|');
+        getline(ss, roleStr, '|');
+        getline(ss, passStr, '|');
+
+        unsigned int currId = std::atoi(idStr.getElements());
+
+        if (currId == id) {
+            if (roleStr == "Admin") {
+                return new Admin(firstNameStr.getElements(), lastNameStr.getElements(), currId);
+            } else if (roleStr == "Teacher") {
+                return new Teacher(firstNameStr.getElements(), lastNameStr.getElements(), currId);
+            } else if (roleStr == "Student") {
+                return new Student(firstNameStr.getElements(), lastNameStr.getElements(), currId);
+            }
+        }
+    }
+
+    return nullptr;
 }
