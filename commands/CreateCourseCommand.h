@@ -3,13 +3,13 @@
 #include "Command.h"
 #include "../utils/String.h"
 
-class AddCourseCommand: public Command {
+class CreateCourseCommand: public Command {
     String courseName;
     String coursePassword;
     String password;
 
     public:
-        AddCourseCommand(const String& courseName, const String& coursePassword);
+        CreateCourseCommand(const String& courseName, const String& coursePassword);
 
         void execute(System& system) override;
 };
