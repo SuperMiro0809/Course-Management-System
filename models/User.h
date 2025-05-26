@@ -15,7 +15,7 @@ public:
 
     virtual ~User() = default;
 
-	// virtual const String& getRole() const = 0;
+	virtual String getRole() const = 0;
 
     const String& getFirstName() const;
 
