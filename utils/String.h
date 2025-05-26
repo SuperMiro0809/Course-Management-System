@@ -18,9 +18,11 @@ class String {
     public:
       String();
 
-      String(int capacity);
+      explicit String(int capacity);
 
       String(size_t size, const char* initialValue);
+
+      explicit String(const char* initialValue);
 
       String(const String& other);
 

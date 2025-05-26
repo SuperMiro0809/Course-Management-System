@@ -58,6 +58,18 @@ String::String(size_t size, const char* initialValue) {
     std::strcpy(elements, initialValue);
 }
 
+String::String(const char* initialValue) {
+    if (!initialValue) {
+        throw std::invalid_argument("Incorrect initial value.");
+    }
+
+    unsigned int length = std::strlen(initialValue);
+    size = length;
+    capacity = roundToPowerOfTwo(length);
+    elements = new char[capacity + 1];
+    std::strcpy(elements, initialValue);
+}
+
 String::String(const String& other) {
     copyFromDynamic(other);
 }
