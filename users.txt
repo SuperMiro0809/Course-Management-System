@@ -2,3 +2,6 @@
 1|Test|Test|Teacher|0000
 2|Test 1|Test 1|Teacher|0000
 3|Test 2|Test 2|Student|0000
+4|Pesho|Petrov|Teacher|test
+5|AA|BB|Teacher|test
+6|Ivan|Ivanov|Student|test1234
