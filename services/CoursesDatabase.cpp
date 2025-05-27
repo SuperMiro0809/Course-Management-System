@@ -34,11 +34,12 @@ unsigned int CoursesDatabase::findCreatorCourse(const String& courseName, unsign
 
     String line;
     while (true) {
+        getline(DBFile, line);
+
         if (DBFile.eof()) {
             break;
         }
 
-        getline(DBFile, line);
         std::stringstream ss(line.getElements());
         String idStr, courseNameStr, coursePasswordStr, createdByStr;
 

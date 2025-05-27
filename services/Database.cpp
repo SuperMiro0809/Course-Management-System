@@ -20,11 +20,12 @@ int Database::autoIncrement() const {
     unsigned int currentId = 0;
 
     while (true) {
+        getline(DBFile, line);
+
         if (DBFile.eof()) {
             break;
         }
 
-        getline(DBFile, line);
         std::stringstream ss(line.getElements());
         String idStr;
         getline(ss, idStr, '|');

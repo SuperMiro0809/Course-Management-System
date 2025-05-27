@@ -28,11 +28,12 @@ void LoginCommand::execute(System& system) {
 
     String line;
     while (true) {
+        getline(UsersFile, line);
+
         if (UsersFile.eof()) {
             break;
         }
 
-        getline(UsersFile, line);
         std::stringstream ss(line.getElements());
         String idStr, firstNameStr, lastNameStr, roleStr, passStr;
 

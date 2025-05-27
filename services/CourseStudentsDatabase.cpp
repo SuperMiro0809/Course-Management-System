@@ -33,11 +33,12 @@ bool CourseStudentsDatabase::isStudentAddedToCourse(unsigned int courseId, unsig
 
     String line;
     while (true) {
+        getline(DBFile, line);
+
         if (DBFile.eof()) {
             break;
         }
 
-        getline(DBFile, line);
         std::stringstream ss(line.getElements());
         String idStr, courseIdStr, studentIdStr;
 

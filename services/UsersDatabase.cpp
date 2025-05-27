@@ -47,11 +47,12 @@ void UsersDatabase::changePassword(unsigned int id, const String& oldPassword, c
 
     String line;
     while (true) {
+        getline(DBFile, line);
+
         if (DBFile.eof()) {
             break;
         }
 
-        getline(DBFile, line);
         std::stringstream ss(line.getElements());
         String idStr, firstNameStr, lastNameStr, roleStr, passStr;
 
@@ -98,11 +99,12 @@ const User* UsersDatabase::getUserById(unsigned int id) const {
 
     String line;
     while (true) {
+        getline(DBFile, line);
+
         if (DBFile.eof()) {
             break;
         }
 
-        getline(DBFile, line);
         std::stringstream ss(line.getElements());
         String idStr, firstNameStr, lastNameStr, roleStr, passStr;
 
