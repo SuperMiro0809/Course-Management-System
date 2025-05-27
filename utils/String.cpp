@@ -35,15 +35,15 @@ void String::resize(int newCapacity) {
 
 String::String() {
     size = 0;
-    capacity = 0;
-    elements = new char[capacity];
+    capacity = 8;
+    elements = new char[8];
     elements[0] = '\0';
 }
 
 String::String(int capacity) {
     size = 0;
     this->capacity = capacity;
-    elements = new char[capacity];
+    elements = new char[capacity + 1];
     elements[0] = '\0';
 }
 
