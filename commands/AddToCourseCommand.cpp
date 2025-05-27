@@ -3,6 +3,7 @@
 #include "../services/UsersDatabase.h"
 #include "../services/CoursesDatabase.h"
 #include "../services/CourseStudentsDatabase.h"
+#include "../services/MessagesDatabase.h"
 #include "../models/User.h"
 
 AddToCourseCommand::AddToCourseCommand(const String& courseName, unsigned int studentId):
@@ -44,4 +45,8 @@ void AddToCourseCommand::execute(System& system) {
 
     courseStudentsDb.addNewCourseStudent(courseId, studentId);
     delete user;
+
+    MessagesDatabase messagesDb("../messages.txt");
+    String message = currUser->getFirstName() + " " + currUser->getFamilyName() + " added you to " + courseName;
+    messagesDb.sendMessage(currUser->getId(), studentId, message);
 }
