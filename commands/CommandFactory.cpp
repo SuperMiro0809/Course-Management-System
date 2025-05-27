@@ -12,6 +12,7 @@
 #include "AssignHomeworkCommand.h"
 #include "MailboxCommand.h"
 #include "MessageStudentsCommand.h"
+#include "MessageCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -68,6 +69,14 @@ Command* CommandFactory::create(const String& input) {
         getline(ss, message);
 
         return new MessageStudentsCommand(courseName, message);
+    } else if (cmd == "message") {
+        String message;
+        unsigned int userId;
+        ss >> userId;
+        ss >> std::ws;
+        getline(ss, message);
+
+        return new MessageCommand(userId, message);
     }
 
     return nullptr;
