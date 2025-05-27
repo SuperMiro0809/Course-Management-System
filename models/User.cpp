@@ -6,11 +6,10 @@ User::User() {
   id = -1;
 }
 
-User::User(const char* firstName, const char* familyName, unsigned int id) {
-	this->firstName = String(std::strlen(firstName), firstName);
-	this->familyName = String(std::strlen(familyName), familyName);
-    this->id = id;
-}
+User::User(const char* firstName, const char* familyName, unsigned int id):
+    firstName(firstName),
+    familyName(familyName),
+    id(id) { }
 
 const String& User::getFirstName() const {
 	return firstName;

@@ -10,6 +10,7 @@
 #include "CreateCourseCommand.h"
 #include "AddToCourseCommand.h"
 #include "AssignHomeworkCommand.h"
+#include "MailboxCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -57,6 +58,8 @@ Command* CommandFactory::create(const String& input) {
         ss >> courseName >> homeworkName;
 
         return new AssignHomeworkCommand(courseName, homeworkName);
+    } else if (cmd == "mailbox") {
+        return new MailboxCommand();
     }
 
     return nullptr;
