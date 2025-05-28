@@ -6,9 +6,9 @@ class Database {
     protected:
         String dbName;
     public:
-        Database(const char* dbName);
+        explicit Database(const char* dbName);
 
-        Database(const String& dbName);
+        explicit Database(const String& dbName);
 
         int autoIncrement() const;
 };

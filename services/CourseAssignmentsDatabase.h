@@ -5,7 +5,7 @@
 
 class CourseAssignmentsDatabase: public Database {
     public:
-        CourseAssignmentsDatabase(const char* dbName);
+        explicit CourseAssignmentsDatabase(const char* dbName);
 
         void addNewAssignment(unsigned int courseId, const String& homework) const;
 };
