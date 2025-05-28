@@ -19,9 +19,6 @@ void CourseStudentsDatabase::addNewCourseStudent(unsigned int courseId, unsigned
     DBFile << courseId << '|';
     DBFile << studentId << '\n';
 
-    std::cout << "Student with ID " << studentId << " added to course with ID " << courseId
-              << " successfully!" << std::endl;
-
     DBFile.close();
 }
 

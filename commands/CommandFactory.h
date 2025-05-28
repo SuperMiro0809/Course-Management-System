@@ -5,5 +5,5 @@
 
 class CommandFactory {
     public:
-        Command* create(const String& input);
+        static Command* create(const String& input);
 };

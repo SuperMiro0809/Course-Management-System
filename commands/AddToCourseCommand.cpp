@@ -46,6 +46,9 @@ void AddToCourseCommand::execute(System& system) {
     courseStudentsDb.addNewCourseStudent(courseId, studentId);
     delete user;
 
+    std::cout << "Student with ID " << studentId << " added to course with ID " << courseId
+          << " successfully!" << std::endl;
+
     MessagesDatabase messagesDb("../messages.txt");
     String message = currUser->getFirstName() + " " + currUser->getFamilyName() + " added you to " + courseName;
     messagesDb.sendMessage(currUser->getId(), studentId, message);

@@ -13,6 +13,7 @@
 #include "MailboxCommand.h"
 #include "MessageStudentsCommand.h"
 #include "MessageCommand.h"
+#include "EnrollCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -77,6 +78,11 @@ Command* CommandFactory::create(const String& input) {
         getline(ss, message);
 
         return new MessageCommand(userId, message);
+    } else if (cmd == "enroll") {
+        String courseName, coursePassword;
+        ss >> courseName >> coursePassword;
+
+        return new EnrollCommand(courseName, coursePassword);
     }
 
     return nullptr;

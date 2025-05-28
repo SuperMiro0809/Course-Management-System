@@ -59,3 +59,39 @@ unsigned int CoursesDatabase::findCreatorCourse(const String& courseName, unsign
     DBFile.close();
     return 0;
 }
+
+const Course* CoursesDatabase::findCourseByName(const String& courseName) const {
+    std::ifstream DBFile(dbName.getElements());
+
+    if (!DBFile.is_open()) {
+        throw std::runtime_error("Error: could not open database file");
+    }
+
+    String line;
+    while (true) {
+        getline(DBFile, line);
+
+        if (DBFile.eof()) {
+            break;
+        }
+
+        std::stringstream ss(line.getElements());
+        String idStr, courseNameStr, coursePasswordStr, createdByStr;
+
+        getline(ss, idStr, '|');
+        getline(ss, courseNameStr, '|');
+        getline(ss, coursePasswordStr, '|');
+        getline(ss, createdByStr);
+
+        unsigned int currId = std::atoi(idStr.getElements());
+        unsigned int currCreatedById = std::atoi(createdByStr.getElements());
+
+        if (courseName == courseNameStr) {
+            DBFile.close();
+            return new Course(currId, courseNameStr, coursePasswordStr, currCreatedById);
+        }
+    }
+
+    DBFile.close();
+    return nullptr;
+}
