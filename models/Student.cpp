@@ -11,3 +11,7 @@ String Student::getRole() const {
 const Mailbox& Student::getMailbox() const {
     return mailbox;
 }
+
+void Student::clearMailbox() {
+    mailbox.clearMailbox("../messages.txt", id);
+}

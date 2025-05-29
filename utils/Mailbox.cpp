@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <sstream>
+#include "../services/MessagesDatabase.h"
 
 void Mailbox::freeDynamic() {
     delete[] messages;
@@ -104,9 +105,23 @@ void Mailbox::loadFromFile(const char* filename, unsigned int userId) {
     MessagesDB.close();
 }
 
+void Mailbox::clearMailbox(const char* filename, unsigned int userId) {
+    MessagesDatabase messagesDb(filename);
+    messagesDb.deleteReceiverMessages(userId);
+
+    freeDynamic();
+    capacity = 4;
+    messages = new Message[capacity];
+    size = 0;
+}
+
 std::ostream& operator<<(std::ostream& os, const Mailbox& message) {
-    for (size_t i = 0; i < message.getSize(); i++) {
-        os << message.messages[i] << '\n';
+    if (message.getSize() == 0) {
+        os << "No messages to show!" << '\n';
+    } else {
+        for (size_t i = 0; i < message.getSize(); i++) {
+            os << message.messages[i] << '\n';
+        }
     }
 
     return os;

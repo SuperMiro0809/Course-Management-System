@@ -29,5 +29,7 @@ class Mailbox {
 
         void loadFromFile(const char* filename, unsigned int userId);
 
+        void clearMailbox(const char* filename, unsigned int userId);
+
         friend std::ostream& operator<<(std::ostream& os, const Mailbox& message);
 };

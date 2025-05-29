@@ -8,6 +8,10 @@ const User* System::getCurrentUser() const {
     return currentUser;
 }
 
+User* System::getCurrentUser() {
+    return currentUser;
+}
+
 void System::setCurrentUser(User* user) {
     currentUser = user;
 }

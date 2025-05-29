@@ -13,4 +13,6 @@ public:
     String getRole() const override;
 
     const Mailbox& getMailbox() const;
+
+    void clearMailbox();
 };

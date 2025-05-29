@@ -10,6 +10,8 @@ class System {
 
         const User* getCurrentUser() const;
 
+        User* getCurrentUser();
+
         void setCurrentUser(User* user);
 
         void logout();
