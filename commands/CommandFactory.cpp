@@ -14,6 +14,7 @@
 #include "MessageStudentsCommand.h"
 #include "MessageCommand.h"
 #include "EnrollCommand.h"
+#include "SubmitAssignmentCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -83,6 +84,13 @@ Command* CommandFactory::create(const String& input) {
         ss >> courseName >> coursePassword;
 
         return new EnrollCommand(courseName, coursePassword);
+    } else if (cmd == "submit_assignment") {
+        String courseName, assignmentName, submission;
+        ss >> courseName >> assignmentName;
+        ss >> std::ws;
+        getline(ss, submission);
+
+        return new SubmitAssignmentCommand(courseName, assignmentName, submission);
     }
 
     return nullptr;

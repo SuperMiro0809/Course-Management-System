@@ -8,4 +8,6 @@ class CourseAssignmentsDatabase: public Database {
         explicit CourseAssignmentsDatabase(const char* dbName);
 
         void addNewAssignment(unsigned int courseId, const String& homework) const;
+
+        unsigned int findCourseAssigment(unsigned int courseId, const String& homeworkName) const;
 };
