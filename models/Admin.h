@@ -6,6 +6,8 @@
 
 class Admin: public User {
     UsersContainer userList;
+    bool areUsersLoaded = false;
+
 public:
     Admin(const char* firstName, const char* familyName, unsigned int id);
 
@@ -13,5 +15,5 @@ public:
 
     User* clone() const override;
 
-    void messageAllUsers(const String& messageText) const;
+    void messageAllUsers(const String& messageText);
 };
