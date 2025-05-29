@@ -25,4 +25,8 @@ class UsersContainer {
         void add(const User& user);
 
         void loadFromFile(const char* filename);
+
+        const User* operator[](size_t index) const;
+
+        size_t getUsersCount() const;
 };

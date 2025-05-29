@@ -101,3 +101,14 @@ void UsersContainer::loadFromFile(const char* filename) {
 
     DBFile.close();
 }
+
+const User* UsersContainer::operator[](size_t index) const {
+    if (index >= size) {
+        throw std::out_of_range("Invalid user index.");
+    }
+    return users[index];
+}
+
+size_t UsersContainer::getUsersCount() const {
+    return size;
+}
