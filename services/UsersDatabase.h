@@ -8,7 +8,7 @@ class UsersDatabase: public Database {
     public:
         explicit UsersDatabase(const char* dbName);
 
-        void addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) const;
+        unsigned int addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) const;
 
         void changePassword(unsigned int id, const String& oldPassword, const String& newPassword) const;
 

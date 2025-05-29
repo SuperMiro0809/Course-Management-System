@@ -13,6 +13,8 @@ public:
 
     User(const char* firstName, const char* familyName, unsigned int id);
 
+	User(const String& firstName, const String& familyName, unsigned int id);
+
     virtual ~User() = default;
 
 	virtual String getRole() const = 0;

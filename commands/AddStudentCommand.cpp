@@ -1,8 +1,9 @@
 #include "AddStudentCommand.h"
 
 #include <stdexcept>
+
+#include "../models/Admin.h"
 #include "../models/User.h"
-#include "../services/UsersDatabase.h"
 
 AddStudentCommand::AddStudentCommand(const String& firstName, const String& familyName, const String& password)
   : Command(),
@@ -11,13 +12,15 @@ AddStudentCommand::AddStudentCommand(const String& firstName, const String& fami
     password(password) {}
 
 void AddStudentCommand::execute(System& system) {
-    const User* currUser = system.getCurrentUser();
+    User* currUser = system.getCurrentUser();
 
     if (!currUser) {
         throw std::logic_error("Command forbidden!");
     }
 
-    UsersDatabase usersDb("../users.txt");
-
-    usersDb.addNewUser(firstName, familyName, "Student", password);
+    if (Admin* admin = dynamic_cast<Admin*>(currUser)) {
+       admin->addNewProfile(firstName, familyName, password, "Student");
+    } else {
+        std::cout << "Command forbidden!\n";
+    }
 }

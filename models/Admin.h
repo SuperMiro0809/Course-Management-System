@@ -15,5 +15,9 @@ public:
 
     User* clone() const override;
 
+    void loadUserList();
+
     void messageAllUsers(const String& messageText);
+
+    void addNewProfile(const String& firstName, const String& familyName, const String& password, const char* role);
 };

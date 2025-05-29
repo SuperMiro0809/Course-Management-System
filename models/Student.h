@@ -11,6 +11,8 @@ class Student: public User {
 public:
     Student(const char* firstName, const char* familyName, unsigned int id);
 
+    Student(const String& firstName, const String& familyName, unsigned int id);
+
     String getRole() const override;
 
     const Mailbox& getMailbox() const;

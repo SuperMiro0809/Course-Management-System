@@ -11,6 +11,11 @@ User::User(const char* firstName, const char* familyName, unsigned int id):
     familyName(familyName),
     id(id) { }
 
+User::User(const String& firstName, const String& familyName, unsigned int id):
+	firstName(firstName),
+	familyName(familyName),
+	id(id) {}
+
 const String& User::getFirstName() const {
 	return firstName;
 }

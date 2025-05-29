@@ -10,7 +10,7 @@
 
 UsersDatabase::UsersDatabase(const char* dbName): Database(dbName) {}
 
-void UsersDatabase::addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) const {
+unsigned int UsersDatabase::addNewUser(const String& firstName, const String& familyName, const char* role, const String& password) const {
     int nextId = autoIncrement();
 
     std::ofstream DBFile(dbName.getElements(), std::ios::app);
@@ -32,6 +32,8 @@ void UsersDatabase::addNewUser(const String& firstName, const String& familyName
               << std::endl;
 
     DBFile.close();
+
+    return nextId;
 }
 
 void UsersDatabase::changePassword(unsigned int id, const String& oldPassword, const String& newPassword) const {
