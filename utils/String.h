@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-static unsigned roundToPowerOfTwo(unsigned v);
-
 class String {
     char* elements;
     int capacity;

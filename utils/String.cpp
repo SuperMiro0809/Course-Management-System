@@ -1,16 +1,5 @@
 #include "String.h"
 
-static unsigned roundToPowerOfTwo(unsigned v) {
-    v--;
-    v |= v >> 1;
-    v |= v >> 2;
-    v |= v >> 4;
-    v |= v >> 8;
-    v |= v >> 16;
-    v++;
-    return v;
-}
-
 void String::freeDynamic() {
     delete[] elements;
 }
@@ -24,6 +13,10 @@ void String::copyFromDynamic(const String& other) {
 }
 
 void String::resize(int newCapacity) {
+    if (newCapacity < 1) newCapacity = 1;
+
+    if (newCapacity < size + 1) newCapacity = size + 1;
+
     capacity = newCapacity;
 
     char* newElements = new char[capacity + 1];
@@ -53,7 +46,7 @@ String::String(size_t size, const char* initialValue) {
     }
 
     this->size = std::strlen(initialValue);
-    capacity = roundToPowerOfTwo(size);
+    capacity = size > 0 ? size * 2 : 8;
     elements = new char[capacity + 1];
     std::strcpy(elements, initialValue);
 }
@@ -65,7 +58,7 @@ String::String(const char* initialValue) {
 
     unsigned int length = std::strlen(initialValue);
     size = length;
-    capacity = roundToPowerOfTwo(length);
+    capacity = size > 0 ? size * 2 : 8;
     elements = new char[capacity + 1];
     std::strcpy(elements, initialValue);
 }
@@ -76,7 +69,7 @@ String::String(const String& other) {
 
 String::String(size_t size, char c) {
     this->size = size;
-    capacity = roundToPowerOfTwo(size);
+    capacity = size > 0 ? size * 2 : 8;
     elements = new char[capacity + 1];
 
     for (int i = 0; i < size; i++) {
@@ -325,7 +318,7 @@ std::istream& operator>>(std::istream& is, String& str) {
     is >> buffer;
 
     size_t inputLen = std::strlen(buffer);
-    int newCap = roundToPowerOfTwo(inputLen);
+    int newCap = inputLen > 0 ? inputLen * 2 : 8;
     str.resize(newCap);
 
     std::strcpy(str.elements, buffer);
@@ -339,7 +332,7 @@ std::istream& getline(std::istream& is, String& str) {
     is.getline(buffer, 1024);
 
     size_t inputLen = std::strlen(buffer);
-    int newCap = roundToPowerOfTwo(inputLen);
+    int newCap = inputLen > 0 ? inputLen * 2 : 8;
     str.resize(newCap);
 
     std::strcpy(str.elements, buffer);
@@ -353,7 +346,7 @@ std::istream& getline(std::istream& is, String& str, char delimeter) {
     is.getline(buffer, 1024, delimeter);
 
     size_t inputLen = std::strlen(buffer);
-    int newCap = roundToPowerOfTwo(inputLen);
+    int newCap = inputLen > 0 ? inputLen * 2 : 8;
     str.resize(newCap);
 
     std::strcpy(str.elements, buffer);
