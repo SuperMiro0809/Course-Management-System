@@ -12,4 +12,6 @@ public:
     String getRole() const override;
 
     User* clone() const override;
+
+    void messageAllUsers(const String& messageText) const;
 };

@@ -16,6 +16,7 @@
 #include "EnrollCommand.h"
 #include "SubmitAssignmentCommand.h"
 #include "ClearMailboxCommand.h"
+#include "MessageAllCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -94,6 +95,12 @@ Command* CommandFactory::create(const String& input) {
         return new SubmitAssignmentCommand(courseName, assignmentName, submission);
     } else if (cmd == "clear_mailbox") {
         return new ClearMailboxCommand();
+    } else if (cmd == "message_all") {
+        String message;
+        ss >> std::ws;
+        getline(ss, message);
+
+        return new MessageAllCommand(message);
     }
 
     return nullptr;
