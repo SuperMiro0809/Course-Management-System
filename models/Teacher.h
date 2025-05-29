@@ -8,4 +8,6 @@ public:
     Teacher(const char* firstName, const char* familyName, unsigned int id);
 
     String getRole() const override;
+
+    User* clone() const override;
 };

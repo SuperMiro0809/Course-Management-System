@@ -1,7 +1,7 @@
 #include "Student.h"
 
 Student::Student(const char* firstName, const char* familyName, unsigned int id): User(firstName, familyName, id) {
-    mailbox.loadFromFile("../messages.txt", id);
+    // mailbox.loadFromFile("../messages.txt", id);
 }
 
 String Student::getRole() const {
@@ -15,3 +15,8 @@ const Mailbox& Student::getMailbox() const {
 void Student::clearMailbox() {
     mailbox.clearMailbox("../messages.txt", id);
 }
+
+User *Student::clone() const {
+    return new Student(*this);
+}
+

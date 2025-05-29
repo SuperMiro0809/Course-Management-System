@@ -17,6 +17,8 @@ public:
 
 	virtual String getRole() const = 0;
 
+	virtual User* clone() const = 0;
+
     const String& getFirstName() const;
 
     const String& getFamilyName() const;

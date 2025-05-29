@@ -15,4 +15,6 @@ public:
     const Mailbox& getMailbox() const;
 
     void clearMailbox();
+
+    User* clone() const override;
 };

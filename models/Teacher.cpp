@@ -5,3 +5,7 @@ Teacher::Teacher(const char* firstName, const char* familyName, unsigned int id)
 String Teacher::getRole() const {
     return String("Teacher");
 }
+
+User *Teacher::clone() const {
+    return new Teacher(*this);
+}
