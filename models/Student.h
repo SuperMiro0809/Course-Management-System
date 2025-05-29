@@ -6,6 +6,7 @@
 
 class Student: public User {
     Mailbox mailbox;
+    bool isMailboxLoaded = false;
 
 public:
     Student(const char* firstName, const char* familyName, unsigned int id);
@@ -13,6 +14,10 @@ public:
     String getRole() const override;
 
     const Mailbox& getMailbox() const;
+
+    bool getIsMailboxLoaded() const;
+
+    void loadMailbox();
 
     void clearMailbox();
 

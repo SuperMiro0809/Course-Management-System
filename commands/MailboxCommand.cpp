@@ -6,13 +6,16 @@
 #include "../utils/Mailbox.h"
 
 void MailboxCommand::execute(System& system) {
-    const User* currUser = system.getCurrentUser();
+    User* currUser = system.getCurrentUser();
 
     if (!currUser) {
         throw std::logic_error("Command forbidden!");
     }
 
-    if (const Student* student = dynamic_cast<const Student*>(currUser)) {
+    if (Student* student = dynamic_cast<Student*>(currUser)) {
+        if (!student->getIsMailboxLoaded()) {
+            student->loadMailbox();
+        }
         const Mailbox& mailbox = student->getMailbox();
         std::cout << mailbox;
     } else {
