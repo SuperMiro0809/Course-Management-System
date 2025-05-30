@@ -18,6 +18,7 @@
 #include "ClearMailboxCommand.h"
 #include "MessageAllCommand.h"
 #include "ViewAssignmentSubmissions.h"
+#include "GradeAssignmentCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -107,6 +108,18 @@ Command* CommandFactory::create(const String& input) {
         ss >> courseName >> assignmentName;
 
         return new ViewAssignmentSubmissions(courseName, assignmentName);
+    } else if (cmd == "grade_assignment") {
+        String courseName, assignmentName, message;
+        unsigned int studentId;
+        double grade;
+
+        ss >> courseName >> assignmentName;
+        ss >> studentId;
+        ss >> grade;
+        ss >> std::ws;
+        getline(ss, message);
+
+        return new GradeAssignmentCommand(courseName, assignmentName, studentId, grade, message);
     }
 
     return nullptr;

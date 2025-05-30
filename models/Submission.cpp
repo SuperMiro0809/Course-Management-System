@@ -1,6 +1,7 @@
 #include "Submission.h"
 
 #include "../services/UsersDatabase.h"
+#include "../services/GradesDatabase.h"
 
 Submission::Submission():
     id(-1),
@@ -13,6 +14,15 @@ Submission::Submission(unsigned int id, unsigned int assignmentId, unsigned int 
     assignmentId(assignmentId),
     studentId(studentId),
     submission(submission) {}
+
+void Submission::addGrade(double grade, const String& message) const {
+    GradesDatabase gradesDb("../grades.txt");
+    gradesDb.addGrade(assignmentId, studentId, grade, message);
+}
+
+unsigned int Submission::getStudentId() const {
+    return studentId;
+}
 
 std::ostream& operator<<(std::ostream& os, const Submission& s) {
     UsersDatabase usersDb("../users.txt");
