@@ -1,3 +1,8 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
 #include "MessageStudentsCommand.h"
 
 #include "../models/User.h"

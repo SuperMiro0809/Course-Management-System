@@ -1,3 +1,8 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
 #include "SubmitAssignmentCommand.h"
 
 #include "../models/Course.h"

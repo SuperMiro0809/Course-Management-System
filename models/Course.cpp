@@ -1,3 +1,8 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
 #include "Course.h"
 
 Course::Course(unsigned int id, const String& courseName, const String& coursePassword, unsigned int creatorId):

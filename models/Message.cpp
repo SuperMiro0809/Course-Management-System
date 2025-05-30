@@ -1,3 +1,8 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
 #include "Message.h"
 
 #include "../services/UsersDatabase.h"

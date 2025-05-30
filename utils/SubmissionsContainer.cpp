@@ -1,3 +1,9 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
+
 #include "SubmissionsContainer.h"
 
 #include <fstream>

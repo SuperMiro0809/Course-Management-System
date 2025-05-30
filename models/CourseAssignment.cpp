@@ -1,3 +1,8 @@
+/*
+    Name: Miroslav Balev
+    №: 9MI0600470
+*/
+
 #include "CourseAssignment.h"
 
 CourseAssignment::CourseAssignment(unsigned int id, unsigned int courseId, const String& assignmentName):
