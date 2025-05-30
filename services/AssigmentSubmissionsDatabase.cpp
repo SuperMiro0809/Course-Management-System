@@ -58,3 +58,9 @@ bool AssigmentSubmissionsDatabase::isAlreadySubmitted(unsigned int assignmentId,
     DBFile.close();
     return false;
 }
+
+SubmissionsContainer AssigmentSubmissionsDatabase::getAssignmentSubmissions(unsigned int assignmentId) const {
+    SubmissionsContainer container;
+    container.loadFromFile(dbName.getElements(), assignmentId);
+    return container;
+}

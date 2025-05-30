@@ -17,6 +17,7 @@
 #include "SubmitAssignmentCommand.h"
 #include "ClearMailboxCommand.h"
 #include "MessageAllCommand.h"
+#include "ViewAssignmentSubmissions.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -101,6 +102,11 @@ Command* CommandFactory::create(const String& input) {
         getline(ss, message);
 
         return new MessageAllCommand(message);
+    } else if (cmd == "view_assignment_submissions") {
+        String courseName, assignmentName;
+        ss >> courseName >> assignmentName;
+
+        return new ViewAssignmentSubmissions(courseName, assignmentName);
     }
 
     return nullptr;

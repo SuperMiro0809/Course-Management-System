@@ -14,7 +14,6 @@ std::ostream& operator<<(std::ostream& os, const Message& message) {
     char buffer[100];
     std::strftime(buffer, sizeof(buffer), "%H:%M %d.%m.%Y", timeinfo);
 
-    // Get sender name (this requires UsersDatabase or a passed-in map)
     UsersDatabase usersDb("../users.txt");
     const User* sender = usersDb.getUserById(message.senderId);
     String senderName;
