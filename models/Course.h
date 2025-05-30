@@ -17,4 +17,5 @@ class Course {
 
         unsigned int getCreatorId() const;
 
+        const String& getCourseName() const;
 };

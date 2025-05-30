@@ -19,6 +19,7 @@
 #include "MessageAllCommand.h"
 #include "ViewAssignmentSubmissions.h"
 #include "GradeAssignmentCommand.h"
+#include "GradesCommand.h"
 
 Command* CommandFactory::create(const String& input) {
     std::stringstream ss(input.getElements());
@@ -120,6 +121,8 @@ Command* CommandFactory::create(const String& input) {
         getline(ss, message);
 
         return new GradeAssignmentCommand(courseName, assignmentName, studentId, grade, message);
+    } else if (cmd == "grades") {
+        return new GradesCommand();
     }
 
     return nullptr;

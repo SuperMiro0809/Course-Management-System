@@ -54,5 +54,41 @@ unsigned int CourseAssignmentsDatabase::findCourseAssigment(unsigned int courseI
         }
     }
 
+    DBFile.close();
     return 0;
+}
+
+const CourseAssignment* CourseAssignmentsDatabase::findCourseAssigment(unsigned int id) const {
+    std::ifstream DBFile(dbName.getElements());
+
+    if (!DBFile.is_open()) {
+        throw std::runtime_error("Error: could not open database file");
+    }
+
+    String line;
+    while (true) {
+        getline(DBFile, line);
+
+        if (DBFile.eof()) {
+            break;
+        }
+
+        std::stringstream ss(line.getElements());
+        String idStr, courseIdStr, homeworkStr;
+
+        getline(ss, idStr, '|');
+        getline(ss, courseIdStr, '|');
+        getline(ss, homeworkStr);
+
+        unsigned int currId = std::atoi(idStr.getElements());
+        unsigned int currCourseId = std::atoi(courseIdStr.getElements());
+
+        if (currId == id) {
+            DBFile.close();
+            return new CourseAssignment(currId, currCourseId, homeworkStr);
+        }
+    }
+
+    DBFile.close();
+    return nullptr;
 }

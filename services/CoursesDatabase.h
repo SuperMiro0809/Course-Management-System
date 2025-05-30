@@ -12,4 +12,6 @@ class CoursesDatabase: public Database {
         unsigned int findCreatorCourse(const String& courseName, unsigned int createdBy) const;
 
         const Course* findCourseByName(const String& courseName) const;
+
+        const Course* findCourseById(unsigned int id) const;
 };

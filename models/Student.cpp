@@ -25,6 +25,19 @@ void Student::clearMailbox() {
     mailbox.clearMailbox("../messages.txt", id);
 }
 
+const GradesContainer& Student::getGrades() const {
+    return grades;
+}
+
+bool Student::getAreGradesLoaded() const {
+    return areGradesLoaded;
+}
+
+void Student::loadGrades() {
+    grades.loadFromFile("../grades.txt", id);
+    areGradesLoaded = true;
+}
+
 User *Student::clone() const {
     return new Student(*this);
 }

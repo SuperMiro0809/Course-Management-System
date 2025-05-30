@@ -17,3 +17,7 @@ const String& Course::getPassword() const {
 unsigned int Course::getCreatorId() const {
     return creatorId;
 }
+
+const String& Course::getCourseName() const {
+    return courseName;
+}
