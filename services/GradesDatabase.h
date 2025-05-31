@@ -12,4 +12,6 @@ class GradesDatabase: public Database {
         explicit GradesDatabase(const char* dbName);
 
         void addGrade(unsigned int assignmentId, unsigned int studentId, double grade, const String& message) const;
+
+        bool isAlreadyGraded(unsigned int assignmentId, unsigned int studentId) const;
 };

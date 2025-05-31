@@ -84,7 +84,6 @@ String::String(size_t size, char c) {
 }
 
 String::~String() {
-    // std::cout << "~String()" << " " << elements << std::endl;
     freeDynamic();
 }
 

@@ -22,6 +22,11 @@ Submission::Submission(unsigned int id, unsigned int assignmentId, unsigned int 
 
 void Submission::addGrade(double grade, const String& message) const {
     GradesDatabase gradesDb("../grades.txt");
+
+    if (gradesDb.isAlreadyGraded(assignmentId, studentId)) {
+        throw std::logic_error("Assignment is already graded");
+    }
+
     gradesDb.addGrade(assignmentId, studentId, grade, message);
 }
 
